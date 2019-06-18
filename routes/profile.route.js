@@ -2,7 +2,7 @@ const express = require('express')
 const routes = express.Router()
 const pers = require('../controller/profile.controller');
 routes.post('/profil', pers.create)
-    .get('/profil/', pers.findOne)
+    .get('/profil/:idProf', pers.findOne)
     .put('/profil/', pers.update)
     .delete('/profil/', pers.delete)
     .get('/profil', pers.findAll);

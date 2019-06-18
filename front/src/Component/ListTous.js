@@ -11,11 +11,13 @@ export default class ListTous extends Component {
 
     }
     componentDidMount() {
-        axios.get('http://localhost:8080/profil')
+        axios.get(`http://localhost:8080/profil`)
             .then(response => {
-                console.log('i am a response', response)
                 this.setState({ profil: response.data });
-            })
+
+                // console.log("ty le response laza ah"+response.data)
+                // console.log('i am a response', response)
+             })
             .catch(function (error) {
                 console.log(error);
             })
@@ -32,9 +34,7 @@ export default class ListTous extends Component {
                         <tr>
                             <th>ID</th>
                             <th>NOM</th>
-                            <th>EMAIL</th>
-                            <th>PASSWORD</th>
-                            <th>PHOTO</th>
+                            <th>PRENOM</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,11 +43,8 @@ export default class ListTous extends Component {
                                 return <tr key={obj._id}>
                                     <td>{obj._id}</td>
                                     <td>{obj.nom}</td>
-                                    <td>{obj.email}</td>
-                                    <td>{obj.password}</td>
-                                    <td><img width="150px" height="50px" src={'http://localhost:8080/user/'+obj.photo_profil} alt="pdp" />
-                                    </td>
-                                    {console.log(obj)}
+                                    <td>{obj.prenom}</td>
+                                    {/* {console.log(obj)} */}
                                 </tr>
 
                             })) : ('')

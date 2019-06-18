@@ -44,7 +44,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {   
     Profile.find()
     .then(users => {    
-        res.send(users);
+        console.log("response get", res.send(users));
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Something wrong while retrieving profils."
@@ -53,12 +53,12 @@ exports.findAll = (req, res) => {
 };
 // Find a single profil with a id
 exports.findOne = (req, res) => {
-    Profile.findById(req.body.id)
+    Profile.findById(req.params.idProf)
     .then(profilchoix => {
         //console.log(unprofil) 
         if(!profilchoix) {
             return res.status(404).send({
-                message: "profil not found with id" + req.body.id
+                message: "profil not found with id" + req.params.idProf
             });            
         }
         else{  
@@ -69,11 +69,11 @@ exports.findOne = (req, res) => {
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({
-                message: "profil not found with id " + req.body.id
+                message: "profil not found with id " + req.params.idProf
             });                
         }
         return res.status(500).send({
-            message: "Something wrong retrieving profil with id " + req.body.id
+            message: "Something wrong retrieving profil with id " + req.params.idProf
         });
     });
 };
